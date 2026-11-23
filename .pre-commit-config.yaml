@@ -1,0 +1,69 @@
+repos:
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v5.0.0
+    hooks:
+      - id: check-added-large-files
+        args: ["--maxkb=51200"]
+      - id: check-ast
+      - id: check-json
+      - id: check-toml
+      - id: check-xml
+      - id: check-yaml
+        exclude: ^(kubernetes/|helm/templates/)
+        args: ["--unsafe"]
+      - id: debug-statements
+      - id: requirements-txt-fixer
+
+  - repo: local
+    hooks:
+      - id: mypy
+        name: mypy
+        description: "Run mypy only when mypy config is present and not opted out"
+        entry: |
+          bash -c '''
+            run_mypy=$(python - <<"PY"
+          import os
+          try:
+              import tomllib
+          except ModuleNotFoundError:
+              import tomli as tomllib
+          data = {}
+          if os.path.exists("pyproject.toml"):
+              try:
+                  with open("pyproject.toml", "rb") as fh:
+                      data = tomllib.load(fh)
+              except Exception:
+                  data = {}
+          tool = data.get("tool", {})
+          run = os.path.exists("mypy.ini") or os.path.exists(".mypy.ini") or ("mypy" in tool)
+          if tool.get("pre-commit", {}).get("mypy") is False:
+              run = False
+          print("true" if run else "false")
+          PY
+            )
+            if [ "$run_mypy" = true ]; then
+              mypy "$@"; mypy_exit=$?;
+              [ "$mypy_exit" -eq 0 ] && exit 0 || exit 1;
+            fi
+          ''' bash
+        language: python
+        "types_or": [python, pyi]
+        args:
+          [
+            "--ignore-missing-imports",
+            "--scripts-are-modules",
+            "--follow-imports=skip",
+          ]
+        require_serial: true
+        additional_dependencies: ["mypy"]
+        minimum_pre_commit_version: "2.9.2"
+
+  - repo: https://github.com/astral-sh/ruff-pre-commit
+    rev: v0.11.7
+    hooks:
+      - id: ruff
+        args: ["--fix", "--select=I,E,W,F,S,T201", "--ignore=E501"]
+        types_or: [python, pyi]
+      - id: ruff-format
+        types_or: [python, pyi]
+        args: ["--line-length=120"]

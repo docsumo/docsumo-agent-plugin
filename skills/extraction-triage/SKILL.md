@@ -1,6 +1,6 @@
 ---
 name: extraction-triage
-description: Start here for any reported Docsumo extraction problem, such as a field or table value that is wrong, missing or inconsistent between documents or runs. Checks the document's continuous-learning references first when learning is enabled, then uses the document, its OCR text, the settings and the output to choose the next skill.
+description: Start here for any reported Docsumo extraction problem, such as a field or table value that is wrong, missing or inconsistent between documents or runs. Checks the document's continuous-learning references first when learning is enabled, then uses the document, its OCR text, the settings and the output to choose the next skill. Retrying documents to confirm a fix spends Docsumo credits: always ask the user first, even when they asked for a re-run.
 ---
 
 # Extraction triage
@@ -30,7 +30,8 @@ possibilities apart, say what is uncertain, and, if needed, give the user a mini
 support. Do not force-fit a known fix.
 
 Prefer the smallest change the evidence supports, not a fixed ladder of increasingly expensive settings. Change one
-thing at a time, save, read it back, and retry a small set of affected documents (after a credit estimate) plus a
-document that was already correct, to confirm the fix and catch regressions.
+thing at a time, save, read it back, and retry a small set of affected documents plus a document that was already
+correct, to confirm the fix and catch regressions. Retries spend Docsumo credits: tell the user it spends Docsumo
+credits and ask them to proceed first, even if they asked for a re-run.
 
 Links of the form `../<skill-name>/...` open another installed skill; if one does not resolve, load the skill of that name and read the same file.

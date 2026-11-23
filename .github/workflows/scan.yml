@@ -1,0 +1,9 @@
+name: Scan
+
+on:
+    pull_request:
+        types: [opened, synchronize, reopened, edited]
+jobs:
+    scan:
+        uses: docsumo/workflows/.github/workflows/scan.yml@master
+        secrets: inherit

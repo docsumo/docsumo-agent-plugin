@@ -1,6 +1,6 @@
 ---
 name: product-doctype-setup
-description: Explain or perform Docsumo document type setup in product terms, in Edit Fields (fields, tables, columns, prompts, dropdowns, lookups) and Configure (extraction mode, model, splitting, auto-classification and other processing controls). Use for adding or changing fields and settings, building a new document type, and setup questions.
+description: Explain or perform Docsumo document type setup in product terms, in Edit Fields (fields, tables, columns, prompts, dropdowns, lookups) and Configure (extraction mode, model, splitting, auto-classification and other processing controls). Use for adding or changing fields and settings, building a new document type, and setup questions. Processing documents and field saves that re-extract them spend Docsumo credits: always ask the user first.
 ---
 
 # Doctype setup
@@ -16,6 +16,11 @@ A requested new field is setup, not automatically an extraction problem.
 4. Read saved values back. Existing processed documents need a separate, requested retry to show changed output.
 5. After building a doctype or changing its fields, process one sample document and confirm it reaches Review, not
    `erred`, before calling the setup done.
+
+**Credits:** processing or retrying documents, and a field save that extracts (`docsumo_field_setup_save` with a
+`doc_id`, or with `save_type: "all"`), spend Docsumo credits. Before each, ask the user to proceed, saying it spends
+Docsumo credits, and wait for a yes, even when their request already names the action. Give the credits only if you
+already know them; don't make an extra call to find out.
 
 Wrong output goes to [extraction triage](../extraction-triage/SKILL.md). Correct values that still wait in Review
 usually come from the approval (STP) setting, mandatory fields, validation rules or confidence thresholds.

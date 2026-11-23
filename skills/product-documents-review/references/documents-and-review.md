@@ -47,7 +47,7 @@ show the same lists across all doctypes.
 | Upload | `docsumo_create_file_upload`, then `docsumo_upload_document` (`file_ref`) or `docsumo_upload_case_document` (`file_refs`; `workflow_id` for a published workflow) | The hosted server can't read the user's files, so the file goes up through an upload link first: see [uploading files from your computer](#uploading-files-from-your-computer). |
 | Analytics | `docsumo_get_doctype_analytics` (`part` = `general`, `accuracy`, or both by default) | |
 | Auto-split | `docsumo_review_get_split` (`doc_id` of a split document: its groups and original document id), `docsumo_autosplit_download` (the original `doc_id`; the split documents' extracted data; admins only) | |
-| Credit estimate | `docsumo_doctype_calculate_document_credits` | Run before any retry or change-type. |
+| Credit estimate | `docsumo_doctype_calculate_document_credits` | Optional: when the user wants the cost of a retry or type change before agreeing. |
 
 ### Uploading files from your computer
 
@@ -57,7 +57,7 @@ This needs somewhere to run `curl` where the file is: a shell on the user's mach
 sandbox that holds a chat attachment (Claude.ai, ChatGPT, Cowork).
 
 1. **Confirm first.** Name the files and the target (document type, case type or published workflow), and say that
-   uploading starts processing and spends credits.
+   uploading starts processing and spends Docsumo credits.
 2. **Get the links:** `docsumo_create_file_upload` with each file's `filename` and, if known, `size_bytes`. It returns
    an `upload_url` and a `file_ref` per file.
 3. **Send each file**, from where the file is, with the returned `Content-Type`. Quote the path:
@@ -89,7 +89,7 @@ that uploading "is not set up here"), ask the user to upload the files themselve
 - **By email to a case type:** its `upload_email` comes from `docsumo_get_case_configuration`. Those emails land in
   the case type's Inbox, where they become cases or are attached to them ([case type Inbox](../../product-inbox/SKILL.md)).
 
-An upload starts processing and spends credits like any other.
+An upload starts processing and spends Docsumo credits like any other.
 
 Downloads return short-lived links that need no credential; save one with `curl -sSfL -o <file> "<url>"` or the
 host's fetch before inspecting it.
@@ -98,7 +98,7 @@ host's fetch before inspecting it.
 
 Retry re-runs processing for the selected documents with the doctype's **current**
 Edit Fields and Configure settings. The document keeps its id, returns to `processing`, then
-lands in Review or Processed (or `erred` again). It **spends credits** per page. It is the
+lands in Review or Processed (or `erred` again). It **spends Docsumo credits** per page. It is the
 normal path after a configuration change ("reprocess the failed ones") and after an
 `erred` state. `docsumo_doctype_retry_documents` takes `doc_ids` / `folder_ids` **or**
 `select_all` with the filters and deselect lists (naming ids together with `select_all` is refused),
@@ -110,8 +110,8 @@ cannot be processed again; read the message returned. If a document errors again
 text. Wrong values go to [extraction triage](../../extraction-triage/SKILL.md); a document that keeps failing with an
 error the settings cannot fix goes to Docsumo support with that information.
 
-After a settings change, retry a few documents first to confirm the change works, then the rest, after a credit
-estimate.
+After a settings change, retry a few documents first to confirm the change works, then the rest once the user agrees
+to spend the Docsumo credits.
 
 ### Downloads and exports
 
