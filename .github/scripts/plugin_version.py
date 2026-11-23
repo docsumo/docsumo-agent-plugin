@@ -71,7 +71,9 @@ def manifest_version():
         fail(f"version {version!r} is not MAJOR.MINOR.PATCH or MAJOR.MINOR.PATCH-PRERELEASE (e.g. 0.2.0-rc.1)")
     for plugin in read_json(MARKETPLACE).get("plugins", []):
         if "version" in plugin:
-            fail(f"{MARKETPLACE}: remove \"version\" from the {plugin.get('name')!r} entry; it belongs in plugin.json only")
+            fail(
+                f'{MARKETPLACE}: remove "version" from the {plugin.get("name")!r} entry; it belongs in plugin.json only'
+            )
     return version
 
 
@@ -146,7 +148,9 @@ def release(version):
     else:
         on_main = git("merge-base", "--is-ancestor", "HEAD", main_ref)
         if on_main.returncode == 1:
-            errors.append(f"a stable release must come from main, and this commit is not on {main_ref}: set Target to main")
+            errors.append(
+                f"a stable release must come from main, and this commit is not on {main_ref}: set Target to main"
+            )
         elif on_main.returncode:
             errors.append(f"cannot check that the commit is on {main_ref}: {on_main.stderr.strip()}")
 
@@ -175,7 +179,9 @@ def main(argv):
     unknown = set(args) - {"--stable", "--unreleased"}
     commands = {"check", "version", "last-release", "release"}
     if unknown or command not in commands or (command != "check" and (args or newer_than)):
-        fail(f"usage: {Path(argv[0]).name} check [--stable] [--unreleased] [--newer-than REF] | version | last-release | release")
+        fail(
+            f"usage: {Path(argv[0]).name} check [--stable] [--unreleased] [--newer-than REF] | version | last-release | release"
+        )
     version = manifest_version()
     if command == "version":
         print(version)
