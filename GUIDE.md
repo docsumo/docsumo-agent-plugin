@@ -139,7 +139,8 @@ Then delete the `DOCSUMO_API_KEY` line from `~/.codex/.env` and restart Codex.
 ## Good to know
 
 - **It works as you.** Everything happens in your account, with your permissions.
-- **Credits work as in the app.** Uploads and retries spend credits.
+- **Credits work as in the app.** Uploads, retries, changing a document's type, applying field changes to documents
+  and workflow runs that extract documents spend credits. The assistant asks you before each one.
 - **One key, one account.** To work in a different Docsumo account, use that account's API key.
 - **If you regenerate your API key** in Docsumo, enter the new one as described under [Install](#install).
 

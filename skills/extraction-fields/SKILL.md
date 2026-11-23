@@ -18,6 +18,7 @@ invent an unprinted value.
 Use exact expected values, including leading zeros and dropdown spelling. Compare dates and numbers as normalized
 values only when that is what the user needs; otherwise compare strings exactly. Check the same field on another
 layout too, and both ambiguous and unambiguous dates where relevant. Change one thing at a time, save, read it back,
-and retry the failing document and one that was already correct.
+and retry the failing document and one that was already correct. Retries spend Docsumo credits: tell the user it
+spends Docsumo credits and ask them to proceed first, even if they asked for a re-run.
 
 Links of the form `../<skill-name>/...` open another installed skill; if one does not resolve, load the skill of that name and read the same file.
