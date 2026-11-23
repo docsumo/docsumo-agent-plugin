@@ -1,0 +1,63 @@
+# This repository is public. Everything is ignored by default and only the files the plugin
+# ships are let back in, so a stray file (customer document, review diff, note) can't be
+# committed by accident. Add a new top-level path here deliberately.
+
+/*
+
+!/.gitignore
+!/README.md
+!/GUIDE.md
+!/LICENSE
+!/CHANGELOG.md
+
+# Claude Code manifest, MCP server and the marketplace both clients read
+!/.claude-plugin/
+!/.mcp.json
+
+# Codex manifest and MCP server
+!/.codex-plugin/
+
+# Shared skills and plugin assets (icon)
+!/skills/
+!/assets/
+
+# Never commit these, even inside an allowed folder
+
+# Customer documents and exports
+*.pdf
+*.tif
+*.tiff
+*.jpg
+*.jpeg
+*.xlsx
+*.xls
+*.csv
+*.zip
+
+# Review material and internal release tooling
+*.diff
+*.patch
+*.orig
+*.rej
+release-tools/
+review/
+SIGNOFF.md
+patterns-*.txt
+
+# Secrets and local configuration
+.env
+.env.*
+*.pem
+*.key
+*.local.json
+.claude/settings.local.json
+
+# OS and editor files
+.DS_Store
+Thumbs.db
+desktop.ini
+*.swp
+*.swo
+*~
+.idea/
+.vscode/

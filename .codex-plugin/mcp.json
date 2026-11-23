@@ -1,0 +1,8 @@
+{
+  "mcpServers": {
+    "docsumo": {
+      "url": "https://mcp.docsumo.com/mcp",
+      "bearer_token_env_var": "DOCSUMO_API_KEY"
+    }
+  }
+}

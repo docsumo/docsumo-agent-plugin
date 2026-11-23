@@ -1,0 +1,45 @@
+{
+  "name": "docsumo",
+  "version": "0.1.0",
+  "description": "Process documents with Docsumo: read, review and export documents, set up document types and fields, build and run workflows, triage case Inbox emails, manage Records, and answer questions from the Docsumo documentation. Connects the hosted Docsumo MCP server.",
+  "author": {
+    "name": "Docsumo",
+    "url": "https://www.docsumo.com"
+  },
+  "homepage": "https://support.docsumo.com",
+  "license": "MIT",
+  "keywords": [
+    "documents",
+    "pdf",
+    "ocr",
+    "extraction",
+    "idp",
+    "classification",
+    "workflows",
+    "mcp"
+  ],
+  "skills": "./skills/",
+  "mcpServers": "./.codex-plugin/mcp.json",
+  "interface": {
+    "displayName": "Docsumo",
+    "shortDescription": "Process documents with Docsumo",
+    "longDescription": "Process documents with Docsumo: read, review and export documents, set up document types and fields, build and run workflows, triage case Inbox emails, manage Records, and answer questions from the Docsumo documentation. Connects the hosted Docsumo MCP server.",
+    "developerName": "Docsumo",
+    "category": "Productivity",
+    "capabilities": [
+      "Read",
+      "Write"
+    ],
+    "websiteURL": "https://www.docsumo.com",
+    "supportURL": "https://support.docsumo.com",
+    "privacyPolicyURL": "https://www.docsumo.com/privacy-policy",
+    "termsOfServiceURL": "https://www.docsumo.com/terms",
+    "composerIcon": "./assets/icon.png",
+    "logo": "./assets/icon.png",
+    "brandColor": "#4D61FC",
+    "defaultPrompt": [
+      "Use Docsumo to show me the extracted values of my latest invoice.",
+      "Use Docsumo to add a field to my document type."
+    ]
+  }
+}

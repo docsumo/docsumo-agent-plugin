@@ -1,0 +1,22 @@
+{
+  "name": "docsumo",
+  "description": "Official Docsumo plugin for document extraction, review and workflows.",
+  "owner": {
+    "name": "Docsumo",
+    "url": "https://www.docsumo.com"
+  },
+  "plugins": [
+    {
+      "name": "docsumo",
+      "source": "./",
+      "description": "Process documents with Docsumo: read, review and export documents, set up document types and fields, build and run workflows, triage case Inbox emails, manage Records, and answer questions from the Docsumo documentation. Connects the hosted Docsumo MCP server.",
+      "category": "productivity",
+      "tags": [
+        "document-processing",
+        "pdf",
+        "ocr",
+        "data-extraction"
+      ]
+    }
+  ]
+}

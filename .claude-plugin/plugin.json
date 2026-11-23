@@ -1,0 +1,37 @@
+{
+  "name": "docsumo",
+  "displayName": "Docsumo",
+  "version": "0.1.0",
+  "description": "Process documents with Docsumo: read, review and export documents, set up document types and fields, build and run workflows, triage case Inbox emails, manage Records, and answer questions from the Docsumo documentation. Connects the hosted Docsumo MCP server.",
+  "author": {
+    "name": "Docsumo",
+    "url": "https://www.docsumo.com"
+  },
+  "homepage": "https://support.docsumo.com",
+  "repository": "https://github.com/docsumo/docsumo-agent-plugin",
+  "privacyPolicyUrl": "https://www.docsumo.com/privacy-policy",
+  "termsOfServiceUrl": "https://www.docsumo.com/terms",
+  "supportUrl": "https://support.docsumo.com",
+  "documentationUrl": "https://support.docsumo.com",
+  "license": "MIT",
+  "icon": "./assets/icon.png",
+  "keywords": [
+    "documents",
+    "pdf",
+    "ocr",
+    "extraction",
+    "idp",
+    "classification",
+    "workflows",
+    "mcp"
+  ],
+  "userConfig": {
+    "docsumo_api_key": {
+      "type": "string",
+      "title": "Docsumo API key",
+      "description": "Your personal API key. In Docsumo, open Settings > Webhook & API and copy it.",
+      "sensitive": true,
+      "required": true
+    }
+  }
+}
