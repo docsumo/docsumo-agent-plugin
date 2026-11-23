@@ -1,0 +1,24 @@
+repos:
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v5.0.0
+    hooks:
+      - id: check-added-large-files
+      - id: check-case-conflict
+      - id: check-json
+      - id: check-merge-conflict
+      - id: check-yaml
+      - id: detect-private-key
+      - id: end-of-file-fixer
+      - id: mixed-line-ending
+      - id: trailing-whitespace
+        args: [--markdown-linebreak-ext=md]
+
+  - repo: local
+    hooks:
+      - id: plugin-version
+        name: plugin version
+        description: Both plugin.json files carry the same valid version
+        entry: python3 .github/scripts/plugin_version.py check
+        language: system
+        files: ^(\.claude-plugin/|\.codex-plugin/)
+        pass_filenames: false
