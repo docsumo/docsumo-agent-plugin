@@ -1,12 +1,12 @@
 name: Release
 
-# Stable releases are automatic: a merge into main with a new version creates the v<version> tag and a GitHub Release
+# Stable releases are automatic: a merge into master with a new version creates the v<version> tag and a GitHub Release
 # with generated notes. Pre-releases are published by hand from the Releases page, from any branch, and the check job
 # fails if one is wrong. RELEASING.md has the steps.
 
 on:
   push:
-    branches: [main]
+    branches: [master]
   release:
     types: [released, prereleased]
 
@@ -21,7 +21,7 @@ jobs:
     permissions:
       contents: write # create the tag and the release
     concurrency:
-      group: release-main
+      group: release-master
       cancel-in-progress: false
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
@@ -59,7 +59,7 @@ jobs:
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
-          fetch-depth: 0 # the checks need main and every v* tag
+          fetch-depth: 0 # the checks need master and every v* tag
 
       - name: Check the release
         env:
@@ -67,5 +67,5 @@ jobs:
           RELEASE_TITLE: ${{ github.event.release.name }}
           RELEASE_NOTES: ${{ github.event.release.body }}
           RELEASE_PRERELEASE: ${{ github.event.release.prerelease }}
-          MAIN_REF: origin/main
+          STABLE_REF: origin/master
         run: python3 .github/scripts/plugin_version.py release

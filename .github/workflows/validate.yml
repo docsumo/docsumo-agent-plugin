@@ -2,8 +2,6 @@ name: Validate
 
 on:
   pull_request:
-  push:
-    branches: [main, testing]
 
 permissions:
   contents: read
@@ -15,16 +13,16 @@ jobs:
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
-          fetch-depth: 0 # the main check compares against main and every v* tag
+          fetch-depth: 0 # the master check compares against master and every v* tag
 
       - name: Check that both manifests carry the same valid version
         run: python3 .github/scripts/plugin_version.py check
 
-      # Clients install from main and only update when the version changes, so every change to main needs a higher
-      # stable version. The merge then releases it (release.yml).
-      - name: Check that the version is raised (pull requests into main)
-        if: github.event_name == 'pull_request' && github.base_ref == 'main'
-        run: python3 .github/scripts/plugin_version.py check --stable --newer-than origin/main
+      # Clients install from master and only update when the version changes, so every change to master needs a
+      # higher stable version. The merge then releases it (release.yml).
+      - name: Check that the version is raised (pull requests into master)
+        if: github.base_ref == 'master'
+        run: python3 .github/scripts/plugin_version.py check --stable --newer-than origin/master
 
       - uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7.1.0
         with:

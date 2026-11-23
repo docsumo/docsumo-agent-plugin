@@ -12,7 +12,7 @@
     python3 .github/scripts/plugin_version.py release                 # check a release published by hand
 
 `release` reads the release from RELEASE_TAG, RELEASE_TITLE, RELEASE_NOTES and RELEASE_PRERELEASE ("true" or
-"false"), and checks the commit that is checked out. A stable release must be on MAIN_REF (default origin/main).
+"false"), and checks the commit that is checked out. A stable release must be on STABLE_REF (default origin/master).
 """
 
 import json
@@ -120,7 +120,7 @@ def last_release(version):
 
 def check(version, stable, unreleased, newer_than):
     if stable and is_prerelease(version):
-        fail(f"{version} is a pre-release; main takes only stable versions such as {version.split('-')[0]}")
+        fail(f"{version} is a pre-release; master takes only stable versions such as {version.split('-')[0]}")
     if newer_than is not None:
         base = version_at(newer_than)
         if precedence(version) <= precedence(base):
@@ -136,7 +136,7 @@ def release(version):
     title = os.environ.get("RELEASE_TITLE", "").strip()
     notes = os.environ.get("RELEASE_NOTES", "").strip()
     prerelease = os.environ.get("RELEASE_PRERELEASE", "").strip().lower()
-    main_ref = os.environ.get("MAIN_REF", "origin/main")
+    stable_ref = os.environ.get("STABLE_REF", "origin/master")
     if prerelease not in {"true", "false"}:
         fail(f"RELEASE_PRERELEASE must be true or false, not {prerelease!r}")
     errors = []
@@ -152,15 +152,15 @@ def release(version):
         if not is_prerelease(version):
             errors.append(f"a pre-release needs a version such as {version}-rc.1 in both plugin.json files")
     elif is_prerelease(version):
-        errors.append(f"{version} is a pre-release version: tick Pre-release, or release a stable version from main")
+        errors.append(f"{version} is a pre-release version: tick Pre-release, or release a stable version from master")
     else:
-        on_main = git("merge-base", "--is-ancestor", "HEAD", main_ref)
-        if on_main.returncode == 1:
+        on_master = git("merge-base", "--is-ancestor", "HEAD", stable_ref)
+        if on_master.returncode == 1:
             errors.append(
-                f"a stable release must come from main, and this commit is not on {main_ref}: set Target to main"
+                f"a stable release must come from master, and this commit is not on {stable_ref}: set Target to master"
             )
-        elif on_main.returncode:
-            errors.append(f"cannot check that the commit is on {main_ref}: {on_main.stderr.strip()}")
+        elif on_master.returncode:
+            errors.append(f"cannot check that the commit is on {stable_ref}: {on_master.stderr.strip()}")
 
     released = highest_release_at_or_above(version, exclude_tag=tag)
     if released:
@@ -181,7 +181,7 @@ def main(argv):
     if "--newer-than" in args:
         at = args.index("--newer-than")
         if at + 1 >= len(args):
-            fail("--newer-than needs a git ref, e.g. origin/main")
+            fail("--newer-than needs a git ref, e.g. origin/master")
         newer_than = args[at + 1]
         del args[at : at + 2]
     unknown = set(args) - {"--stable", "--unreleased"}
