@@ -18,25 +18,32 @@
 import json
 import os
 import re
+import shutil
 import subprocess
 import sys
 from pathlib import Path
 from typing import NoReturn
 
 ROOT = Path(__file__).resolve().parents[2]
+GIT = shutil.which("git") or "git"
 MANIFESTS = (".claude-plugin/plugin.json", ".codex-plugin/plugin.json")
 MARKETPLACE = ".claude-plugin/marketplace.json"
 # MAJOR.MINOR.PATCH with an optional pre-release such as 0.2.0-rc.1 (semver.org, no build metadata).
 SEMVER = re.compile(r"^(0|[1-9]\d*)\.(0|[1-9]\d*)\.(0|[1-9]\d*)(?:-([0-9A-Za-z-]+(?:\.[0-9A-Za-z-]+)*))?$")
 
 
+def say(text, stream=sys.stdout):
+    stream.write(f"{text}\n")
+
+
 def fail(message: str) -> NoReturn:
-    print(f"error: {message}", file=sys.stderr)
+    say(f"error: {message}", sys.stderr)
     sys.exit(1)
 
 
 def git(*args):
-    return subprocess.run(["git", *args], cwd=ROOT, capture_output=True, text=True)
+    # Runs git with this script's own arguments, never a shell.
+    return subprocess.run([GIT, *args], cwd=ROOT, capture_output=True, text=True)  # noqa: S603
 
 
 def read_json(rel):
@@ -53,7 +60,8 @@ def is_prerelease(version):
 def precedence(version):
     """Sort key that follows semver precedence: 0.2.0-rc.1 < 0.2.0-rc.2 < 0.2.0 < 0.2.1."""
     match = SEMVER.match(version)
-    assert match, version
+    if not match:
+        raise ValueError(f"not a version: {version!r}")
     major, minor, patch, pre = match.groups()
     core = (int(major), int(minor), int(patch))
     if pre is None:
@@ -160,10 +168,10 @@ def release(version):
 
     if errors:
         for error in errors:
-            print(f"error: {error}", file=sys.stderr)
+            say(f"error: {error}", sys.stderr)
         sys.exit(1)
     kind = "pre-release" if prerelease == "true" else "release"
-    print(f"ok: {tag} is a valid {kind}")
+    say(f"ok: {tag} is a valid {kind}")
 
 
 def main(argv):
@@ -184,18 +192,18 @@ def main(argv):
         )
     version = manifest_version()
     if command == "version":
-        print(version)
+        say(version)
     elif command == "last-release":
         previous = last_release(version)
         if previous:
-            print(f"v{previous}")
+            say(f"v{previous}")
     elif command == "release":
         release(version)
     else:
         unreleased = "--unreleased" in args
         check(version, "--stable" in args, unreleased, newer_than)
         compared = f"{newer_than} and every release" if newer_than else "every release" if unreleased else ""
-        print(f"ok: {version}" + (f" is higher than {compared}" if compared else ""))
+        say(f"ok: {version}" + (f" is higher than {compared}" if compared else ""))
 
 
 if __name__ == "__main__":
