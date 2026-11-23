@@ -81,6 +81,39 @@ New versions add features and fixes. Update from time to time:
 Then start a new Claude Code session or restart Codex. In Claude Code you can also turn on automatic updates: run
 `/plugin`, open **docsumo** on the **Marketplaces** tab and choose **Enable auto-update**.
 
+## Go back to an earlier version
+
+Each release has a version tag, such as `v0.1.0`, on the
+[Releases page](https://github.com/docsumo/docsumo-agent-plugin/releases). If a new version causes a problem, install
+an earlier one. The same steps install a specific version for the first time.
+
+### Claude Code
+
+```bash
+claude plugin marketplace remove docsumo
+claude plugin marketplace add docsumo/docsumo-agent-plugin#v0.1.0
+claude plugin install docsumo@docsumo --config docsumo_api_key=<YOUR_API_KEY>
+```
+
+Skip the first line for a new install. Removing the marketplace also removes the plugin and your saved key, so enter
+the key again. Then start a new Claude Code session.
+
+### Codex
+
+```bash
+codex plugin remove docsumo@docsumo
+codex plugin marketplace remove docsumo
+codex plugin marketplace add docsumo/docsumo-agent-plugin@v0.1.0
+codex plugin add docsumo@docsumo
+```
+
+Skip the first two lines for a new install, and add your key as described under [Install](#install). An existing key
+stays in `~/.codex/.env`. Then restart Codex.
+
+### Return to the latest version
+
+A pinned version gets no updates. To return to the latest version, run the same steps without `#v0.1.0` or `@v0.1.0`.
+
 ## Remove
 
 ### Claude Code
