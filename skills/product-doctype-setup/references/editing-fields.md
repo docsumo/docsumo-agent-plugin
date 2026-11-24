@@ -176,8 +176,8 @@ If the user has Edit Fields open in the app, ask them to close or reload it firs
 `docsumo_field_setup_save` saves the whole draft and can also touch documents:
 
 - `save_type: "one", doc_id: "", status: "processed"` saves the settings only.
-- `save_type: "all"` reprocesses **every** document of the doctype, approved ones included, and spends their credits.
-  Use it only when the user asked to reprocess the whole document type.
+- `save_type: "all"` reprocesses **every** document of the doctype, approved ones included, and spends Docsumo
+  credits for them. Use it only when the user asked to reprocess the whole document type.
 
 Prefer the settings-only save, then retry the documents the user named with `docsumo_doctype_retry_documents`.
 

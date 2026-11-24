@@ -14,6 +14,8 @@ and keep every column when editing ([editing fields](../product-doctype-setup/re
 
 For PDFs, Table Batch Size is pages per call, not a row limit; Excel files are batched differently.
 Check the fix on a continuation page, repeated headers, valid zero or empty cells, and duplicate rows from overlap.
-Retry the failing document and one that was already correct, twice when results vary between runs.
+Retry the failing document and one that was already correct, twice when results vary between runs. Retries spend
+Docsumo credits: tell the user it spends Docsumo credits and ask them to proceed first, even if they asked for a
+re-run.
 
 Links of the form `../<skill-name>/...` open another installed skill; if one does not resolve, load the skill of that name and read the same file.

@@ -17,6 +17,7 @@ For checkboxes and signatures read [mark patterns](references/patterns.md); test
 Confirm the field type and the printed label and location. Do not rename fields just to reproduce a failure: names
 are part of what extraction reads. Read Configure's live option labels rather than remembered values. Change one
 thing at a time, save, read it back, and retry the failing document twice plus one with readable text and one with
-the mark absent.
+the mark absent. Retries spend Docsumo credits: tell the user it spends Docsumo credits and ask them to proceed first,
+even if they asked for a re-run.
 
 Links of the form `../<skill-name>/...` open another installed skill; if one does not resolve, load the skill of that name and read the same file.

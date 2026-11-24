@@ -67,7 +67,7 @@ which also classifies the parts) or, where the file is one long document past th
 fixed pages purely to chunk it; Table Write for one record per run; a python_code block with the table row import for
 many records. Propose any custom-code replacement for a native block to the user before building it. Limits are in
 [block behavior](block-behavior.md). Test on the smallest representative files first, estimate page credits as
-pages × runs before each round, and have very large files uploaded one at a time.
+pages × runs and ask the user before each round, and have very large files uploaded one at a time.
 
 ## Setup or fix procedure
 

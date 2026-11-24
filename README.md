@@ -18,8 +18,8 @@ This plugin bundles:
 ## Before you start
 
 You need a Docsumo account and your API key. In Docsumo, open **Settings > Webhook & API** and copy your key.
-Every action the agent takes runs as you, in that one account, with your permissions. Retries spend credits as they
-would in the app.
+Every action the agent takes runs as you, in that one account, with your permissions. Uploads, retries and other
+actions that extract documents spend credits as they would in the app, and the agent asks before each one.
 
 The hosted server cannot read files on your computer directly. To upload one, the agent asks the server for a
 short-lived upload link and sends the file to it with `curl`. That works from your shell, or from the code sandbox

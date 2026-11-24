@@ -21,6 +21,10 @@
 !/skills/
 !/assets/
 
+# CI, release workflow and repository checks
+!/.github/
+!/.pre-commit-config.yaml
+
 # Never commit these, even inside an allowed folder
 
 # Customer documents and exports
@@ -51,6 +55,10 @@ patterns-*.txt
 *.key
 *.local.json
 .claude/settings.local.json
+
+# Python caches from the CI scripts
+__pycache__/
+*.py[cod]
 
 # OS and editor files
 .DS_Store
