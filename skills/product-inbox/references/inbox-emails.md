@@ -17,7 +17,8 @@ emails: Attach & next, Next, Skip) and the gear button for **Inbox settings** (o
   once processing finishes"), for test emails ("Test emails are read-only") and for archived emails ("Restore the
   email to change its status").
 
-Every role can see the Inbox and act on emails. Shared case links cannot reach it.
+Every role can see a case type's Inbox and act on its emails. Shared case links cannot reach it. A document type's
+Inbox and All Inbox are owner and admin only: [document type Inbox](doctype-inbox.md).
 
 ## Tool values and screen labels
 
@@ -42,14 +43,14 @@ user who is not setting up the Inbox.
 
 | Need | Tool |
 |---|---|
-| One tab, searched and paged | `docsumo_list_inbox_emails` (`tab`, `q` over sender address and name, subject and file names, `test` include/exclude/only, `sort`, `limit` up to 100, `offset`; `total` is the whole tab) |
+| One tab, searched and paged | `docsumo_list_inbox_emails` with `casetype_id` (`tab`, `q` over sender address and name, subject and file names, `test` include/exclude/only, `sort`, `limit` up to 100, `offset`; `total` is the whole tab) |
 | How many emails each tab holds | the same tool with `include_counts` (adds `processing`) |
 | One email in full: body, files, values found, suggested cases, history | `docsumo_get_inbox_email` |
 | Let the user open or save one file | `docsumo_get_inbox_attachment_link` (`download` to save; otherwise it opens, a Word file as its PDF) |
 | The addresses, whether the workflow is published, the settings | `docsumo_get_inbox_settings` |
 | Attach files to a case or a new case | `docsumo_attach_inbox_emails` |
 | Retry, re-check or import the body | `docsumo_rerun_inbox_email` |
-| Relabel, archive or restore | `docsumo_set_inbox_email_status` |
+| Relabel, archive or restore, one email or up to 100 | `docsumo_set_inbox_email_status` (`email_ids`) |
 | Find a case to attach to | `docsumo_list_cases`, or the email's `suggested_cases` |
 
 An unknown case type is not an error: the listing is empty and the counts are zero. Confirm the case type before

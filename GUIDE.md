@@ -14,6 +14,8 @@ It works in **Claude Code** and **Codex**. Support for claude.ai, Claude Desktop
 - **Set up document types**: add or change fields, tables, prompts and processing settings.
 - **Fix extraction issues**: ask why a value is wrong and get the cause and a fix.
 - **Run workflows and cases**: build, test, publish and run workflows, and sort the emails in a case type's Inbox.
+- **Check your Inboxes**: see which emails need review in All Inbox or a document type's Inbox, where each email's
+  files went, and archive, restore or retry them (owners and admins).
 - **Manage Records**: look up and update the reference data your lookups use.
 - **Get answers**: ask how a Docsumo feature works. The assistant checks the official documentation.
 
