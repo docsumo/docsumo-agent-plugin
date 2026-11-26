@@ -1,6 +1,6 @@
 ---
 name: product-doctype-setup
-description: Explain or perform Docsumo document type setup in product terms, in Edit Fields (fields, tables, columns, prompts, dropdowns, lookups) and Configure (extraction mode, model, splitting, auto-classification and other processing controls). Use for adding or changing fields and settings, building a new document type, and setup questions. Processing documents and field saves that re-extract them spend Docsumo credits: always ask the user first.
+description: Explain or perform Docsumo document type setup in product terms, in Edit Fields (fields, tables, columns, prompts, dropdowns, lookups, and why a lookup matches nothing or the wrong row) and Configure (extraction mode, model, splitting, auto-classification and other processing controls). Use for adding or changing fields and settings, building a new document type, and setup questions. Processing documents and field saves that re-extract them spend Docsumo credits: always ask the user first.
 ---
 
 # Doctype setup
@@ -21,6 +21,14 @@ A requested new field is setup, not automatically an extraction problem.
 `doc_id`, or with `save_type: "all"`), spend Docsumo credits. Before each, ask the user to proceed, saying it spends
 Docsumo credits, and wait for a yes, even when their request already names the action. Give the credits only if you
 already know them; don't make an extra call to find out.
+
+**A field lookup that matches nothing or the wrong row:** rows are kept only when their cell contains the whole
+extracted value (ignoring case), and only then scored against the threshold. A value longer or written differently
+from the table's ("C.N.W. Pty. Ltd." against "CNW PTY LTD", a name with a branch after it) matches at no threshold, so
+lowering it changes nothing. Fix it in the document type, in this order: the lookup's conditions, then the source
+value (its prompt, or a cleaning field that normalises it and becomes the lookup's source), then the table's rows. A
+workflow's Table Lookup is no fix unless the user asks for a workflow. Details and how to check the result:
+[how a field lookup picks a row](../product-tables/references/tables.md#how-a-field-lookup-picks-a-row).
 
 Wrong output goes to [extraction triage](../extraction-triage/SKILL.md). Correct values that still wait in Review
 usually come from the approval (STP) setting, mandatory fields, validation rules or confidence thresholds.
