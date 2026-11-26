@@ -85,7 +85,8 @@ that uploading "is not set up here"), ask the user to upload the files themselve
 
 - **In the app:** drag the files onto the document type's Documents tab, or the case's documents for a case.
 - **By email to a document type:** its upload address is in Configure > Import & Export
-  (`docsumo_configure_get(tab="import_export")` reads it).
+  (`upload_email` in `docsumo_get_document_types`, or `docsumo_configure_get(tab="import_export")`). Each email is
+  listed in the type's Inbox tab ([document type Inbox](../../product-inbox/references/doctype-inbox.md)).
 - **By email to a case type:** its `upload_email` comes from `docsumo_get_case_configuration`. Those emails land in
   the case type's Inbox, where they become cases or are attached to them ([case type Inbox](../../product-inbox/SKILL.md)).
 
