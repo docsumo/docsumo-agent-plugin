@@ -3,7 +3,7 @@
 # Docsumo plugin for Claude Code and Codex
 
 Work with [Docsumo](https://www.docsumo.com) from your AI coding agent. Read documents' extracted data, review and
-approve them, set up document types and fields, build and run workflows, triage case Inbox emails, manage Records, and get answers from the
+approve them, set up document types and fields, build and run workflows, triage Inbox emails, manage Records, and get answers from the
 [Docsumo documentation](https://support.docsumo.com).
 
 New to the plugin? Start with the [user guide](GUIDE.md).
@@ -13,7 +13,8 @@ This plugin bundles:
 - **The hosted Docsumo MCP server** (`https://mcp.docsumo.com/mcp`), which acts in your Docsumo account with your
   own API key.
 - **Skills** that teach the agent how Docsumo works: documents and review, document type setup, workflows and
-  cases, the case type email Inbox, Records, account settings, extraction troubleshooting, and connection help.
+  cases, the email Inboxes (All Inbox, document types' and case types'), Records, account settings, extraction
+  troubleshooting, and connection help.
 
 ## Before you start
 
@@ -103,6 +104,7 @@ Then delete the `DOCSUMO_API_KEY` line from `~/.codex/.env`. Start a new Claude 
 - "Show me the extracted values of the latest document in my Invoice document type."
 - "Which documents are waiting in Review?"
 - "Which emails in my Claims Inbox are waiting for review, and which case does each fit?"
+- "Which emails in All Inbox need review, and where did the files from the Acme email go?"
 - "Add a field for the PO number to my Purchase Order document type."
 - "Why is the total on this document wrong?"
 

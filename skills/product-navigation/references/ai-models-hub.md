@@ -9,7 +9,7 @@ Cases and Workflows) is the catalog of pretrained models and the entry point for
 
 | Need | Tool | Notes |
 |---|---|---|
-| All doctypes with metadata | `docsumo_get_document_types` | Active types under `data.document`, each with `doc_type` (the string other tools take), numeric `id`, `title`, `category`, `can_upload`, `created_at` and `doc_counts`; `data.disabled_doc_types` lists the disabled ones. Search with `q` and page with `limit` / `offset` rather than reading several hundred types. The upload email is on Configure > Import & Export. |
+| All doctypes with metadata | `docsumo_get_document_types` | Active types under `data.document`, each with `doc_type` (the string other tools take), numeric `id`, `title`, `category`, `can_upload`, `created_at`, `upload_email` (the address that emails documents into the type, its Inbox's address; each person has their own) and `doc_counts`; `data.disabled_doc_types` lists the disabled ones. Search with `q` and page with `limit` / `offset` rather than reading several hundred types. The upload email is on Configure > Import & Export. |
 | Account models with upload status | `docsumo_agents_hub_list_models(scope="account")` | The same active types with plan and catalog metadata (`user_value`, `is_authorized`, `plan`), no counts; `mode` = `prod` (default) or `test`, `q`, `limit` / `offset`. |
 | Document counts per doctype | `docsumo_get_document_types` (`doc_counts`), `docsumo_doctype_get_document_counts` (with filters) | |
 | Casetypes | `docsumo_list_casetypes` | Case types and their cases are operated through [product workflows](../../product-workflows/SKILL.md). |

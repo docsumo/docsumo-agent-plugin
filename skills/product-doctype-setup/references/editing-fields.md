@@ -109,6 +109,9 @@ A lookup's config holds `source_type` (`csv_table` for a Database Table, `unifie
 - Every group and condition needs an `id`; connectors are lowercase; a group holds conditions only. Approximate takes a
   threshold of 0–100 (the app offers 0–99, default 80).
 - The first condition's column is the value the field shows; reordering conditions changes the output.
+- A lookup that matches nothing or the wrong row is fixed here, not with a workflow: how rows are picked and the
+  order of fixes (conditions, then the source value, then the table's rows) are in
+  [how a field lookup picks a row](../../product-tables/references/tables.md#how-a-field-lookup-picks-a-row).
 - `columns_to_added` holds header names for a Database Table and `{column_id, label}` for a Records table. Each entry creates a
   Lookup Reference field, so send it only when adding them.
 - A header-field lookup takes header fields as sources; a column lookup only columns of its own table. To match a

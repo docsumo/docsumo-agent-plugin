@@ -1,22 +1,24 @@
 ---
 name: product-navigation
-description: Orient in the Docsumo product, covering where screens and settings live, the Home dashboard and Agents Hub (enabling, creating or duplicating document types), the case type workspace and its Inbox, product vocabulary, Sumo AI, integrations and other adjacent areas, plus official documentation lookups for features, limits and the API. Use for where-is, how-do-I and does-Docsumo-support questions.
+description: Orient in the Docsumo product, covering where screens and settings live, the Home dashboard and Agents Hub (enabling, creating or duplicating document types), the case type workspace, the email Inboxes (All Inbox and each document type's and case type's), product vocabulary, Sumo AI, integrations and other adjacent areas, plus official documentation lookups for features, limits and the API. Use for where-is, how-do-I and does-Docsumo-support questions.
 ---
 
 # Product navigation
 
 A document type defines fields and processing settings. Users may call it a model, agent, parser or template.
 Home lists enabled/disabled agents; the Agents Hub (AI Models Hub on some accounts) enables or creates document types. A doctype workspace contains Documents,
-Data Table, Analytics, Configure and Edit Fields. The Review screen shows one document beside extracted values.
+an email Inbox, Data Table, Analytics, Configure and Edit Fields. The Review screen shows one document beside extracted values.
 Records holds reference/entity tables. Settings contains account, members, database tables, billing and integration
-configuration. A case type workspace has Cases, an email Inbox and Configure.
+configuration. A case type workspace has Cases, an email Inbox and Configure. **All Inbox** in the main nav lists every
+case type and document type email together; it and the document type Inboxes are for owners and admins only.
 
 - Enabling, creating or duplicating a doctype: [Agents Hub](references/ai-models-hub.md).
 - Fields and processing controls: [doctype setup](../product-doctype-setup/SKILL.md).
 - Documents, review, retries and exports: [documents and review](../product-documents-review/SKILL.md).
 - Members, access, usage, webhook settings and lookup tables: [account settings](../product-account-settings/SKILL.md).
 - Workflows, triggers, tests, publishing and linked cases: [product workflows](../product-workflows/SKILL.md).
-- A case type's email Inbox, its emails and how they become cases: [case type Inbox](../product-inbox/SKILL.md).
+- The email Inboxes (All Inbox, a document type's, a case type's), their emails, where their files went and how
+  case type emails become cases: [email Inbox](../product-inbox/SKILL.md).
 - Records (formerly Tables) versus legacy CSV Database Tables: [product tables](../product-tables/SKILL.md).
 - Sumo AI, integrations and adjacent UI behavior: [adjacent areas](references/other-areas.md).
 - Public feature/limit/API questions: [official documentation lookup](references/support-docs.md).

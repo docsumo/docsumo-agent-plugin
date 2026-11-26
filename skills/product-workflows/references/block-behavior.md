@@ -66,6 +66,23 @@ holding several documents is split with AI.
   none. Code reads keys from there: never write a key into code or ask the user to paste one, and never print or
   return it.
 
+## Widget, View and validation code
+
+Widget blocks (summary cards, summary text, charts, tables, validation tables), the View and validation blocks run
+code too, and the case screen draws only the value their type expects: code that runs without an error can still show
+"No data found". Before writing one, read `docsumo_get_block_schema` for its type: `code_output` gives the value
+`execute` must return (`returns`), an `example`, the `rules` and, for most, `helpers` to paste into the code.
+
+- A chart gives each bar or line series its own `color` ('#RRGGBB') and a pie one color per label in `colors`. Set
+  the block's chart type setting to the chart's type: while it is unset, the block's settings show Pie.
+- After a run, `output_problems` on a block (run history, waiting for runs, test outcomes) means the screen cannot
+  draw it (errors) or draws it incomplete (warnings). Fix them and run again before calling the work done;
+  `docsumo_get_case_view` reports `renders: false` with the problems for a case's view.
+- Where the plan says nothing about a missing or unreadable value, it is data, not an error: leave it blank and let
+  the check it feeds need review, naming the value (a Warning on a validation table, neither a Pass nor a Fail). Never
+  count it as 0 or another default: a blank tax is not a zero tax. One document's gap then never stops the block for
+  the others.
+
 ## Calling Docsumo from workflow code
 
 When no block does the job (reading or reassigning documents, reading members, writing many table rows), a
