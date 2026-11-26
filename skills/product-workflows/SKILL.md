@@ -13,7 +13,8 @@ workflow. Before working in an account, confirm which account is connected ([con
 - Case stages, documents, sharing and artifacts: [linked cases](references/cases.md).
 - Emails sent to a case type, its Inbox, matching emails to cases and the Inbox settings:
   [case type Inbox](../product-inbox/SKILL.md).
-- How blocks pass data, Python code blocks, limits and reruns: [block behavior](references/block-behavior.md).
+- How blocks pass data, Python code blocks, widget, View and validation code (the value the case screen draws),
+  limits and reruns: [block behavior](references/block-behavior.md).
 - Table Lookup/Write and linked records: [tables](../product-tables/SKILL.md).
 
 Read the saved draft, current block catalog, published version and relevant execution separately. Apply requested

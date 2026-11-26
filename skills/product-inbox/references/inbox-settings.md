@@ -19,8 +19,9 @@ UNAUTHORIZED). Try them first with `docsumo_test_inbox_settings`.
 - A file must be at most 500 MB and not password-protected. Only PDF, image, Office and spreadsheet files are
   imported. A Word file is converted to PDF to be read, and some accounts refuse Word files ("Word files aren't
   supported"); then ask the sender for a PDF.
-- A **document type's** upload email (Configure > Import & Export) is a different address that does not go through
-  any Inbox: see [documents and review](../../product-documents-review/SKILL.md).
+- A **document type's** upload email (Configure > Import & Export) is a different address. Its emails never reach a
+  case type's Inbox or these settings: each one is listed in that document type's own Inbox tab, and its files become
+  documents of the type ([document type Inbox](doctype-inbox.md)).
 
 ## General: clean-up applied to every email
 

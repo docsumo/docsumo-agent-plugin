@@ -100,6 +100,24 @@ fallback's source when that lookup found a row: an empty source skips its condit
 save it, then retry one document and check its value; test a reviewer's correction with
 `docsumo_update_document_field`, which returns every field recomputed from the edited one. A lookup with no match leaves itself and its returned fields empty and flagged for review.
 
+**Fixing a lookup that matches nothing.** Because rows must contain the whole source value (step 2), a document value
+longer or written differently from the table's ("Acme Supply Co - North Branch" or "A.C.M.E. Supply" against "ACME
+SUPPLY CO") matches at no threshold: lowering it changes nothing. Fix it in the document type, in this order, offering
+the first that works:
+
+1. **The conditions**: the column the user named (several columns as an OR group), exact or approximate, threshold.
+2. **The source value**: make the field hold what the table holds, with its prompt (the name only, without branch,
+   site or location), or a cleaning field that derives it and becomes the lookup's source. A cleaning field that
+   normalises a value writes it the way the table's cells write it: it drops dots, commas and apostrophes, turns
+   hyphens, slashes and underscores into a space, then collapses spaces ("C.N.W. Pty. Ltd." becomes "CNW Pty Ltd",
+   "Sherriff-Electrical" becomes "Sherriff Electrical"). Check its result against the table's cells first.
+3. **The table's rows**: a column holding the values as documents print them, added on the Records screen or with
+   the Records tools.
+
+The change applies to every document of the type: after reprocessing (which spends credits; ask first), check the
+documents that missed and a few that matched with `docsumo_get_lookup_candidates`. A workflow is not a fix for a field
+lookup: never offer to replace it with a workflow's Table Lookup unless the user asks for a workflow.
+
 ### Workflow Table Lookup and Table Write
 
 Table Lookup can select entities or cases; configure the matching branch and inspect its output. Table Write inserts or
